@@ -10,14 +10,12 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.view.Window
+import android.view.*
 import android.widget.SeekBar
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -53,12 +51,9 @@ class MainActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        NoLimitStatusBar()
         if (validatePermissions()) startCamera()
-        else Toast.makeText(
-            this@MainActivity ,
-            "مجوز های دسترسی را تایید کنید" ,
-            Toast.LENGTH_SHORT
-        ).show()
+        else Toast.makeText(this@MainActivity , "مجوز های دسترسی را تایید کنید" , Toast.LENGTH_SHORT).show()
         
         cameraExecutor = Executors.newSingleThreadExecutor()
         
@@ -150,6 +145,11 @@ class MainActivity : AppCompatActivity()
         }
     }
     
+    private fun NoLimitStatusBar()
+    {
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+    }
+    
     private fun showDialogResult(savedUri : Uri?)
     {
         val dialog = Dialog(this@MainActivity)
@@ -163,6 +163,7 @@ class MainActivity : AppCompatActivity()
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.window?.attributes?.windowAnimations = R.style.dialogAnimation
         dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.setCancelable(false)
         
         
         //set Data
