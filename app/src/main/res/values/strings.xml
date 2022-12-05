@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">beforeAfterCamera</string>
     <string name="photo_opacity">شفافیت عکس قبلی</string>
-    <string name="change_photo">تغییر عکس قبلی</string>
+    <string name="change_photo">انتخاب عکس</string>
     <string name="settings">تنظیمات</string>
+    <string name="close">بستن</string>
 </resources>

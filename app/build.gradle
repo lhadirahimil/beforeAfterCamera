@@ -68,4 +68,7 @@ dependencies {
 
     //permission manager
     implementation 'com.karumi:dexter:6.2.3'
+
+    //before after slider
+    implementation 'com.github.blackfox94:before_after_slider:701e3d5861'
 }

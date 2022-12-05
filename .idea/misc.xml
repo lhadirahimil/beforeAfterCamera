@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/btn_selector.xml" value="0.1035" />
+        <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/dialog_background.xml" value="0.2385" />
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/ic_brn_normal.xml" value="0.1" />
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/ic_btn_pressed.xml" value="0.1" />
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/seekbar_background.xml" value="0.1035" />
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/drawable/seekbar_thumb.xml" value="0.1035" />
         <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Android Code/beforeAfterCamera/app/src/main/res/layout/dialog_result.xml" value="0.22826086956521738" />
       </map>
     </option>
   </component>

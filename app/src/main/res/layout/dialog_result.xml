@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:layoutDirection="rtl">
+
+    <TextView
+        android:id="@+id/headerTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/iran_sans_x_bold"
+        android:gravity="center"
+        android:text="با موفقیت ذخیره شد"
+        android:textColor="@color/color_foreground"
+        android:textSize="@dimen/_11font_mdp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <!--  before text  -->
+    <TextView
+        android:id="@+id/beforeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16mdp"
+        android:fontFamily="@font/iran_sans_x_demi_bold"
+        android:gravity="center"
+        android:text="تصویر قبل"
+        android:textColor="@color/color_foreground"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintStart_toStartOf="@id/beforeImage"
+        app:layout_constraintTop_toBottomOf="@id/headerTitle"
+        tools:ignore="HardcodedText" />
+
+    <!--  after text  -->
+    <TextView
+        android:id="@+id/afterText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16mdp"
+        android:fontFamily="@font/iran_sans_x_demi_bold"
+        android:gravity="center"
+        android:text="تصویر بعد"
+        android:textColor="@color/color_foreground"
+        android:textSize="@dimen/_10font_mdp"
+        app:layout_constraintStart_toStartOf="@id/afterImage"
+        app:layout_constraintTop_toBottomOf="@id/headerTitle"
+        tools:ignore="HardcodedText" />
+
+
+    <!--  before Image  -->
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/beforeImage"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140mdp"
+        android:layout_marginHorizontal="@dimen/_5mdp"
+        android:layout_marginVertical="@dimen/_8mdp"
+        android:scaleType="centerCrop"
+        android:theme="@style/themeRoundImage"
+        app:layout_constraintEnd_toStartOf="@id/afterImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/beforeText"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/afterImage"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_140mdp"
+        android:layout_marginHorizontal="@dimen/_5mdp"
+        android:layout_marginVertical="@dimen/_8mdp"
+        android:scaleType="centerCrop"
+        android:theme="@style/themeRoundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/beforeImage"
+        app:layout_constraintTop_toBottomOf="@id/afterText"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnClose"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45mdp"
+        android:layout_marginHorizontal="@dimen/_5mdp"
+        android:layout_marginTop="@dimen/_16mdp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/iran_sans_x_regular"
+        android:text="@string/close"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_10mdp"
+        app:layout_constraintTop_toBottomOf="@id/afterImage" />
+</androidx.constraintlayout.widget.ConstraintLayout>

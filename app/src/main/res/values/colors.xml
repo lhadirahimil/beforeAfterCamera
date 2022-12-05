@@ -13,4 +13,5 @@
     <color name="color_foreground">#4D4E52</color>
     <color name="color_red">#FF5454</color>
     <color name="color_red2">#FF5959</color>
+    <color name="color_green">#5cb85c</color>
 </resources>

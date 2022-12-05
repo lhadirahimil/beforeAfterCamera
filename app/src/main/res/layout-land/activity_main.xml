@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layoutDirection="rtl"
+    app:layoutDescription="@xml/activity_main_scene"
     tools:context=".MainActivity">
 
     <androidx.camera.view.PreviewView
@@ -25,7 +26,7 @@
     <!--  card Panel  -->
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardPanel"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_300mdp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_16mdp"
         android:layout_marginEnd="@dimen/_16mdp"
@@ -34,7 +35,8 @@
         app:cardBackgroundColor="@color/color_background"
         app:cardCornerRadius="@dimen/_24mdp"
         app:cardElevation="1dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <!--    panel Container    -->
         <androidx.constraintlayout.motion.widget.MotionLayout
@@ -42,9 +44,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layoutDescription="@xml/activity_main_xml_containerpanel_scene">
-
-
-
 
             <!--      opacity title      -->
             <TextView
@@ -65,7 +64,7 @@
                 android:id="@+id/seekbarOpacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10mdp"
+                android:layout_marginTop="@dimen/_5mdp"
                 android:max="80"
                 android:progress="30"
                 android:progressDrawable="@drawable/seekbar_background"
@@ -132,7 +131,7 @@
                 android:id="@+id/takePicture"
                 android:layout_width="@dimen/_76mdp"
                 android:layout_height="@dimen/_76mdp"
-                android:layout_marginTop="@dimen/_10mdp"
+                android:layout_marginTop="@dimen/_5mdp"
                 android:layout_marginBottom="@dimen/_10mdp"
                 android:background="@drawable/btn_selector"
                 android:scaleType="centerCrop"
@@ -144,4 +143,4 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
