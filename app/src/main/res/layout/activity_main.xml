@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    tools:context=".MainActivity">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/cameraPrev"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/prevPicture"
+        android:layout_width="match_parent"
+        app:saturation="0"
+        android:alpha="0.3"
+        android:scaleType="centerCrop"
+        android:layout_height="match_parent"
+        tools:ignore="ContentDescription" />
+
+
+
+    <!--  card Panel  -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16mdp"
+        android:layout_marginEnd="@dimen/_16mdp"
+        android:layout_marginBottom="@dimen/_16mdp"
+        android:padding="@dimen/_10mdp"
+        app:cardBackgroundColor="@color/color_background"
+        app:cardCornerRadius="@dimen/_24mdp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!--    panel Container    -->
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/containerPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutDescription="@xml/activity_main_xml_containerpanel_scene">
+
+
+            <!--      opacity title      -->
+            <TextView
+                android:id="@+id/opacityTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:fontFamily="@font/iran_sans_x_demi_bold"
+                android:text="@string/photo_opacity"
+                android:textColor="@color/color_foreground"
+                android:textSize="@dimen/_9font_mdp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/seekbarOpacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:max="80"
+                android:progress="30"
+                android:progressDrawable="@drawable/seekbar_background"
+                android:splitTrack="false"
+                android:thumb="@null"
+                android:thumbOffset="-2dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@id/opacityTitle"
+                tools:layout_editor_absoluteX="26dp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50mdp"
+                android:layout_marginHorizontal="@dimen/_30mdp"
+                app:cardBackgroundColor="@color/color_second_background"
+                app:cardCornerRadius="@dimen/_35mdp"
+                app:cardElevation="0dp"
+                app:layout_constraintBottom_toBottomOf="@id/takePicture"
+                app:layout_constraintTop_toTopOf="@id/takePicture"
+                app:strokeColor="#A7A7A7"
+                app:strokeWidth="0.5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/changePhoto"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:layout_weight="0.9"
+                        android:fontFamily="@font/iran_sans_x_demi_bold"
+                        android:gravity="center"
+                        android:text="@string/change_photo"
+                        android:textSize="@dimen/_8font_mdp"
+                        app:drawableTopCompat="@drawable/ic_change_photo" />
+
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9" />
+
+                    <TextView
+                        android:id="@+id/setting"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5mdp"
+                        android:layout_weight="0.9"
+                        android:fontFamily="@font/iran_sans_x_demi_bold"
+                        android:gravity="center"
+                        android:text="@string/settings"
+                        android:textSize="@dimen/_8font_mdp"
+                        app:drawableTopCompat="@drawable/ic_settings" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/takePicture"
+                android:layout_width="@dimen/_76mdp"
+                android:layout_height="@dimen/_76mdp"
+                android:layout_marginTop="@dimen/_10mdp"
+                android:layout_marginBottom="@dimen/_10mdp"
+                android:background="@drawable/btn_selector"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/seekbarOpacity" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
