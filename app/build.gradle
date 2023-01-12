@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -71,4 +73,15 @@ dependencies {
 
     //before after slider
     implementation 'com.github.blackfox94:before_after_slider:701e3d5861'
+
+    //lifecycle
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
+
+    //hilt dependency injection
+    implementation 'com.google.dagger:hilt-android:2.41'
+    kapt 'com.google.dagger:hilt-compiler:2.41'
+
+//for view models
+    implementation 'androidx.activity:activity-ktx:1.6.1'
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">beforeAfterCamera</string>
+    <string name="app_name">beforeAfter</string>
     <string name="photo_opacity">شفافیت عکس قبلی</string>
     <string name="change_photo">انتخاب عکس</string>
     <string name="settings">تنظیمات</string>

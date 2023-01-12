@@ -6,6 +6,7 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -21,25 +22,27 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import coil.load
 import com.google.common.util.concurrent.ListenableFuture
 import com.hadirahimi.beforeaftercamera.databinding.ActivityMainBinding
 import com.hadirahimi.beforeaftercamera.databinding.DialogResultBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-
 
 class MainActivity : AppCompatActivity()
 {
     private lateinit var binding : ActivityMainBinding
     private lateinit var cameraExecutor : ExecutorService
-    
+    private val viewModel : viewModel by viewModels()
     //activity result
     lateinit var galleryResult : ActivityResultLauncher<Intent>
     private lateinit var processCameraProvider : ListenableFuture<ProcessCameraProvider>
@@ -48,9 +51,11 @@ class MainActivity : AppCompatActivity()
     @SuppressLint("SdCardPath")
     override fun onCreate(savedInstanceState : Bundle?)
     {
+        
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR
         NoLimitStatusBar()
         if (validatePermissions()) startCamera()
         else Toast.makeText(this@MainActivity , "مجوز های دسترسی را تایید کنید" , Toast.LENGTH_SHORT).show()
@@ -59,15 +64,30 @@ class MainActivity : AppCompatActivity()
         
         
         //  receive image from gallery
-        galleryResult =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result : ActivityResult ->
+        galleryResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result : ActivityResult ->
                 if (result.resultCode == Activity.RESULT_OK)
                 {
                     val intent = result.data
                     // Handle the Intent
-                    binding.prevPicture.load(intent?.data)
+                    lifecycleScope.launchWhenCreated {
+                        intent?.data?.let { viewModel.saveImage(it) }
+                    }
+                    
                 }
             }
+        
+        lifecycleScope.launchWhenCreated {
+            viewModel.liveImageAddress.observe(this@MainActivity)
+            {
+                binding.prevPicture.load(it)
+            }
+        }
+        
+        lifecycleScope.launchWhenCreated {
+            viewModel.liveOpacity.observe(this@MainActivity){
+                binding.prevPicture.alpha = it
+            }
+        }
         
         //init views
         binding.apply {
@@ -88,7 +108,9 @@ class MainActivity : AppCompatActivity()
                     val alpha = seekbar?.progress?.toDouble()?.div(100)
                     if (alpha != null)
                     {
-                        prevPicture.alpha = alpha.toFloat()
+                        lifecycleScope.launchWhenCreated {
+                            viewModel.saveOpacity(alpha.toFloat())
+                        }
                     }
                 }
                 
@@ -103,7 +125,7 @@ class MainActivity : AppCompatActivity()
                 }
             }
             setting.setOnClickListener {
-            
+                toggle.performClick()
             }
             //take picture
             takePicture.setOnClickListener {
